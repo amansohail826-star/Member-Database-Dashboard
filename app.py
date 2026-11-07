@@ -99,3 +99,13 @@ if st.button(label="Show",width="stretch",type="primary"):
     for j in select_ID:
         st.success(f"{j} : {out_dict[j]}")
 
+# ---------------------------------------------------------------------------------------------------
+
+unique_list_del = list(db[index_s])
+
+if st.button(label="Delete",width="stretch",type="primary"):
+    for i in range(0,len(unique_list_del)):
+        if traget_s == str(unique_list_del[i]):
+            db = db.drop(axis=0,index=i)
+            st.dataframe(db)
+            db.to_csv("member_db.csv",index=False)
