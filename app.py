@@ -58,3 +58,44 @@ if st.button(label="Inset Date",width="stretch",type="primary"):
     st.dataframe(df)
     db.to_csv("member_db.csv",index=False)
 
+# ------------------------------------------------------------------------------------------------------------
+
+index_s = st.radio(label="Select index",options=["ID","Email","DiscordId","InstagramID","GithubID","LinkedInID"],horizontal=True)
+
+all_columns = ["ID","FullName","Email","Age","WorkType","DiscordId","InstagramID","GithubID","LinkedInID","Description"]
+
+index_dict = {
+    "ID":0,
+    "Email":2,
+    "DiscordId":5,
+    "InstagramID":6,
+    "GithubID":7,
+    "LinkedInID":8,
+}
+
+all_columns.pop(index_dict[index_s])
+
+select_ID = st.multiselect(label="Select Columns",options=all_columns)
+
+traget_s = st.text_input(label="Enter the traget valuer")
+
+unique_list = list(db[index_s])
+
+out_dict = {}
+for i in range(0,len(unique_list)):
+    if traget_s == str(unique_list[i]):
+        out_dict[all_columns[0]] = db[all_columns[0]][i]
+        out_dict[all_columns[1]] = db[all_columns[1]][i]
+        out_dict[all_columns[2]] = db[all_columns[2]][i]
+        out_dict[all_columns[3]] = db[all_columns[3]][i]
+        out_dict[all_columns[4]] = db[all_columns[4]][i]
+        out_dict[all_columns[5]] = db[all_columns[5]][i]
+        out_dict[all_columns[6]] = db[all_columns[6]][i]
+        out_dict[all_columns[7]] = db[all_columns[7]][i]
+        out_dict[all_columns[8]] = db[all_columns[8]][i]
+
+        # print(out_dict)
+if st.button(label="Show",width="stretch",type="primary"):
+    for j in select_ID:
+        st.success(f"{j} : {out_dict[j]}")
+
