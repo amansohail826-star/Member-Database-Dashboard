@@ -1,6 +1,4 @@
-__pycache__/
-*.py[cod]
+.venv
 .env
-.streamlit/
-member_db.csv
-venv/
+__pycache__
+.streamlit
