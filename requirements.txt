@@ -1,3 +1,5 @@
 streamlit
 pandas
 pydantic
+requests
+python-dotenv
